@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Signup Page</title>
+  <body><center>
+    <h1>Welcome!</h2>
+        <h2>Sign in to continue to Application</h2>
+    </center>
+  </body>
+  <style>
+    /* Basic styling for demonstration purposes */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #afb4f6;
+    }
+
+    .container {
+      width: 300px;
+      margin: 100px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .error-message {
+      color: red;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="loginPage" class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Username" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <input type="submit" value="Login">
+    </form>
+    <div id="loginErrorMessage" class="error-message"></div>
+    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up here</a>.</p>
+  </div>
+
+  <div id="signupPage" class="container" style="display: none;">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <input type="text" id="signupUsername" placeholder="Username" required>
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <input type="submit" value="Sign Up">
+    </form>
+    <div id="signupErrorMessage" class="error-message"></div>
+    <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a>.</p>
+  </div>
+
+  <script>
+    function showSignup() {
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("signupPage").style.display = "block";
+    }
+
+    function showLogin() {
+      document.getElementById("signupPage").style.display = "none";
+      document.getElementById("loginPage").style.display = "block";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get input values
+      var username = document.getElementById("loginUsername").value;
+      var password = document.getElementById("loginPassword").value;
+
+      // Validate input
+      if (username === " " || password === " ") {
+        document.getElementById("loginErrorMessage").textContent = "Please enter username and password.";
+        return;
+      }
+
+      // Here you can implement login logic (e.g., send a request to the server for authentication)
+      // For demonstration, let's assume login is successful if username is "user" and password is "password"
+      if (username === "kavi" && password === "kavi@01") {
+        window.location.href = 'home.html';
+        //alert("Login successful!");
+        // Redirect to another page or perform any other action upon successful login
+      } else {
+        document.getElementById("loginErrorMessage").textContent = "Invalid username or password.";
+      }
+    });
+
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get input values
+      var username = document.getElementById("signupUsername").value;
+      var password = document.getElementById("signupPassword").value;
+
+      // Validate input
+      if (username === "" || password === "") {
+        document.getElementById("signupErrorMessage").textContent = "Please enter username and password.";
+        return;
+      }
+
+      // Here you can implement signup logic (e.g., send a request to the server to create a new account)
+      alert("Signup successful!");
+      // Redirect to another page or perform any other action upon successful signup
+    });
+  </script>
+</body>
+</html>
